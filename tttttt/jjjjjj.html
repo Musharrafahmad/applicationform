@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Form - Musharraf Ahmad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            background: #fff;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px 32px 32px 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            color: #222;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            margin-top: 22px;
+            width: 100%;
+            padding: 10px 0;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #125ea2;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Application Form</h2>
+        <form action="form.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="father">Father's Name:</label>
+            <input type="text" id="father" name="father">
+
+            <label for="class">Class:</label>
+            <select id="class" name="class">
+                <option value="">--Select Class--</option>
+                <option value="12">12</option>
+                <option value="11">11</option>
+                <option value="10">10</option>
+                <option value="9">9</option>
+            </select>
+
+            <label for="school">School Name:</label>
+            <input type="text" id="school" name="school">
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
