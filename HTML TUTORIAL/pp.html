@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple E-Commerce Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .product {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      width: 200px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product h3 {
+      margin: 10px 0;
+    }
+    .product p {
+      color: green;
+      font-weight: bold;
+    }
+    button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .cart {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cart h2 {
+      text-align: center;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .total {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛒 My E-Commerce Store</h1>
+
+  <div class="products" id="product-list">
+    <!-- Products inserted by JavaScript -->
+  </div>
+
+  <div class="cart" id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items">
+      <p>Cart is empty.</p>
+    </div>
+    <div class="total" id="total">Total: ₹0</div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: "T-Shirt", price: 4990 },
+      { id: 2, name: "Jeans", price: 9929 },
+      { id: 3, name: "Shoes", price: 14299 },
+      { id: 4, name: "Cap", price: 1939 }
+    ];
+
+    let cart = [];
+
+    const productList = document.getElementById('product-list');
+    const cartItems = document.getElementById('cart-items');
+    const totalDisplay = document.getElementById('total');
+
+    // Display products
+    products.forEach(product => {
+      let div = document.createElement('div');
+      div.className = 'product';
+      div.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>₹${product.price}</p>
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+      `;
+      productList.appendChild(div);
+    });
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      renderCart();
+    }
+
+    function renderCart() {
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Cart is empty.</p>';
+        totalDisplay.textContent = 'Total: ₹0';
+        return;
+      }
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        let div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.name} - ₹${item.price}</span>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItems.appendChild(div);
+      });
+
+      totalDisplay.textContent = 'Total: ₹' + total;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+  </script>
+
+</body>
+</html>
